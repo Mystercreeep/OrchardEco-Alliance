@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="{{ Culture.Name }}">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% page_title Site.SiteName, position: "after", separator: " | " %}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ 'Eco-AllianceTheme/favicon.png' | shape_new_url }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap"
+            rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Theme CSS -->
+    <link href="{{ 'Eco-AllianceTheme/wwwroot/css/style.css' | shape_new_url }}" rel="stylesheet" asp-append-version="true"/>
+
+    <!-- Resources -->
+    {% resources type: "Meta" %}
+    {% resources type: "HeadLink" %}
+    {% resources type: "HeadScript" %}
+    {% resources type: "Stylesheet" %}
+</head>
+<body>
+
+
+<!-- Header with Navbar -->
+<header class="main-header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"> <img
+                        src="{{ 'Eco-AllianceTheme/images/logo.png' | shape_new_url }}" alt="{{ Site.SiteName }}" height="60"
+                        onerror="this.src='https://via.placeholder.com/60x60?text=Logo'; this.onerror='';"> <span
+                        class="ms-2 fw-bold text-success">{{ Site.SiteName }}</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav"> <!-- Navbar manuelle au lieu du menu OrchardCore -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link {% if Request.Path contains '/about' %}active{% endif %}"
+                                            href="/about">About</a></li>
+
+                    <li class="nav-item"><a class="nav-link {% if Request.Path contains '/noscombat' %}active{% endif %}"
+                                            href="/nos-combats">Our fights</a></li>
+
+                    <li class="nav-item"><a class="nav-link {% if Request.Path contains '/contact' %}active{% endif %}"
+                                            href="/#contact-us">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="header-banner text-center text-white"
+         style="
+                 background: url('{{ 'Eco-AllianceTheme/images/Banner.jpg' | shape_new_url }}') center/cover no-repeat;
+                 height: 50vh;           
+                 min-height: 300px;      
+                 ">
+    <div class="container d-flex flex-column align-items-center justify-content-center h-100">
+        <h2 class="display-5 fw-bold mb-4">{{ Site.SiteName }}</h2>
+        <a href="/about" class="btn btn-success btn-lg">Our fights</a>
+    </div>
+</section>
+
+<!-- Hero Section (only on homepage) -->
+{% if Request.Path == '/' %}
+    <section class="hero-section position-relative">
+        <div class="hero-slider">
+            <div class="hero-slide"
+                 style="background-image: url('{{ 'SmartFarm.Theme/images/hero-1.jpg' | shape_new_url }}');">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-lg-6">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+{% endif %}
+
+<!-- Page Title (except on homepage) -->
+{% if Request.Path != '/' %}
+    <div class="page-title-section py-4 bg-light">
+        <div class="container">
+            <h1 class="h2 mb-0">{{ Page.Title }}</h1>
+        </div>
+    </div>
+{% endif %}
+
+<!-- Features Section (only on homepage) -->
+{% if Request.Path == '/' %}
+    <section class="features-section py-5 bg-light">
+        {% render_body %}
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5"
+             style="background-image: url('{{ 'SmartFarm.Theme/images/cta-bg.jpg' | shape_new_url }}'); background-size: cover; background-position: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="cta-content bg-white bg-opacity-90 p-5 rounded">
+                        <h2 class="mb-4">Donation for environment</h2>
+                        <a href="/contact" class="btn btn-success btn-lg">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
+<section class="page-section" id="contact-us">
+
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="section-heading text-uppercase">Contact Us</h2>
+            <h3 class="section-subheading text-muted">Send us a message</h3>
+        </div>
+        <form id="contactForm" name="sentMessage"
+              action="/workflows/Invoke?token=CfDJ8KEhkaIUVr1MkdpFyorjVb48ZtedPE0RrIZJrD-C0PBTwoWYhMwZe3j2pbfRP9GYAvGTgeUVnSo9Bu20WO5Awq0b_WsDjvITIK0HF4bstnvlQQmiyZmrczOGZEkSC36t6iczSw7oVc76iGhDy91FNXfCCEy6px1nf1QYkmQKD4s4NzXcr84AmLuhmRwwfrOmnB5qz8coUuTvG71KDLeNC4Y2lh4KE63R5vRxc8niTnsv"
+              method="POST" novalidate="novalidate">
+
+            <div class="row align-items-stretch mb-5">
+                <div class="col-md-6 d-flex flex-column gap-3">
+                    <div class="form-group">
+                        <input class="form-control" id="name" name="name" type="text" placeholder="Your Name *"
+                               required/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="email" name="email" type="email" placeholder="Your Email *"
+                               required/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="phone" name="phone" type="tel" placeholder="Your Phone *"
+                               required/>
+                    </div>
+                </div>
+
+                <div class="col-md-6 d-flex mb-3">
+                    <div class="form-group w-100 mb-4 mt-4">
+                        <textarea class="form-control h-100" id="message" name="message" placeholder="Your Message *"
+                                  required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-5 text-center">
+                <div id="success"></div>
+                <button class="btn btn-primary btn-xl text-uppercase rounded-pill" id="sendMessageButton" type="submit">
+                    Send Message
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- Footer -->
+<footer class="footer bg-dark text-white pt-5 pb-3">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="footer-about">
+                    <h5 class="text-white mb-4">About</h5>
+                    <p>Eco-Alliance NGO 2025</p>
+                    <div class="footer-social mt-4">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="footer-links">
+                    <h5 class="text-white mb-4">Fast nav</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/" class="text-white-50 text-decoration-none hover-white">Home</a>
+                        </li>
+                        <li class="mb-2"><a href="/OurFights" class="text-white-50 text-decoration-none hover-white">Our Fights
+                                </a></li>
+                        <li class="mb-2"><a href="/#contact-us" class="text-white-50 text-decoration-none hover-white">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="footer-contact">
+                    <h5 class="text-white mb-4">Location</h5>
+                    <p class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>20 rue des Mimosas, Saint Leger sous Cholet</p>
+                    <p class="mb-2"><i class="fas fa-envelope me-2"></i> contact@Eco-Alliance.green</p>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-4 mb-3 border-secondary">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="mb-0">&copy; {{ "now" | date: "%Y" }} {{ Site.SiteName }}. All rights reserved</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <p class="mb-0">Made by Eco-Alliance</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<a href="#" class="back-to-top btn btn-success position-fixed bottom-0 end-0 m-4" style="display: none;">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Theme JS -->
+<script src="{{ 'SmartFarm.Theme/js/scripts.js' | shape_new_url }}"></script>
+
+<!-- Resources -->
+{% resources type: "FootScript" %}
+</body>
+</html>
+<style>
+    .event-card {
+        border-radius: 16px;
+        background-color: white;
+        padding: 1.5rem;
+        text-align: center;
+        height: 100%;
+        transition: transform 0.3s ease;
+        border-color: #6B8E23;
+        border-radius: 10px;
+    }
+
+    .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-image {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .event-location,
+    .event-date {
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+
+    /* green for primary */
+    .btn-primary,
+    .navbar-nav .nav-link.active, .timeline-image,
+    .navbar-nav .nav-link:hover, .timeline::before {
+        background-color: #6B8E23 !important;
+        border-color: #6B8E23 !important;
+        color: white !important;
+    }
+
+    .fa-stack-2x {
+        color: #6B8E23 !important;
+
+    }
+
+    /* Cream color text */
+    .masthead-subheading,
+    footer, .masthead-heading, .navbar-brand {
+        color: #F5F5DC !important;
+    }
+
+    /* Brown color text */
+    .section-heading, .timeline-heading {
+        color: #6b8E23 !important;
+
+    }
+
+    /* grey background-color*/
+    body,
+    .page-section,
+    .masthead {
+        background-color: #f0f0f0 !important;
+        color: #333;
+    }
+
+    /* Hover for button*/
+    .btn-primary:hover {
+        background-color: #557a1f !important;
+        border-color: #557a1f !important;
+    }
+
+    /*form*/
+    .form-control, form-control:hover {
+        height: 63.33px;
+        padding: 0.75rem 1rem;
+        font-size: 1.1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #ccc;
+    }
+
+    .form-control:focus,
+    select.form-control:focus,
+    textarea.form-control:focus {
+        box-shadow: 0 0 0 0.4rem rgb(107, 142, 35) !important;
+    }
+</style>

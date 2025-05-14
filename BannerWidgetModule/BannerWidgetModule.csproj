@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<!-- Allow implicit compilation of .cs files -->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Orchard Core module support -->
+		<PackageReference Include="OrchardCore.Module.Targets" Version="2.1.7" />
+		<!-- Definitions and content fields -->
+		<PackageReference Include="OrchardCore.ContentManagement" Version="2.1.7" />
+		<PackageReference Include="OrchardCore.ContentFields" Version="2.1.7" />
+		<!-- Media field support -->
+		<PackageReference Include="OrchardCore.Media.Fields" Version="2.1.7" />
+		<!-- Widget part -->
+		<PackageReference Include="OrchardCore.Widgets.Core" Version="2.1.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Include manifest and Liquid templates -->
+		<Content Include="Manifest.cs" />
+		<Content Include="Views\**\*.liquid" />
+	</ItemGroup>
+
+</Project>

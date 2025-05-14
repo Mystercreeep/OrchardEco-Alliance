@@ -1,0 +1,4 @@
+﻿<Placement>
+  <Zone Id="Header" />
+  <Zone Id="Footer" />
+</Placement>

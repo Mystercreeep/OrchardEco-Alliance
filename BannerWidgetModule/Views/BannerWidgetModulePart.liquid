@@ -1,0 +1,18 @@
+{%- assign imageField = Model.ContentItem.Content.BannerPart.Image -%}
+{%- assign textField  = Model.ContentItem.Content.BannerPart.Text  -%}
+
+<div class="banner-widget" style="position:relative; text-align:center;">
+  {%- if imageField.FirstOrDefault.Url -%}
+    <img src="{{ imageField.FirstOrDefault.Url | url }}"
+         alt="{{ imageField.FirstOrDefault.DisplayText }}"
+         style="width:100%; height:auto;" />
+  {%- endif -%}
+
+  {% if textField.Value %}
+    <div class="banner-text"
+         style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+                color:white; font-size:2rem; text-shadow:0 0 5px rgba(0,0,0,0.7);">
+      {{ textField.Value }}
+    </div>
+  {% endif %}
+</div>

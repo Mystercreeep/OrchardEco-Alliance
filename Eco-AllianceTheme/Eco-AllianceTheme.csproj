@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lombiq.HelpfulLibraries.OrchardCore" Version="12.2.0" />
+    <PackageReference Include="OrchardCore.DisplayManagement.Liquid" Version="2.1.7" />
+    <PackageReference Include="OrchardCore.Liquid" Version="2.1.7" />
+    <PackageReference Include="OrchardCore.Liquid.Abstractions" Version="2.1.7" />
+    <PackageReference Include="OrchardCore.Templates" Version="2.1.7" />
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="2.1.7" />
+    <PackageReference Include="OrchardCore.ContentManagement" Version="2.1.7" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="2.1.7" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="2.1.7" />
+  </ItemGroup>
+	<ItemGroup>
+		<None Include="Placement.info" />
+  <Content Include="Views\**\*.liquid" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Remove="Views\Footer.liquid" />
+	</ItemGroup>
+</Project>
